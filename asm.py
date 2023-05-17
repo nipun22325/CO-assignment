@@ -3,10 +3,16 @@ opCodes={'add':'00000','sub':'00001','mov':['00010', '00011'],'ld':'00100','st':
 registers={'R0':'000','R1':'001','R2':'010','R3':'011','R4':'100','R5':'101','R6':'110','FLAGS':'111'}
 labels={}
 var_count=0
+l=[]
 
-file=input('Enter file\'s name: ')
-f1=open(file,'r')
-l=f1.readlines()
+while 1:
+    line=input()
+    l.append(line)
+    if ':' in line and 'hlt' in line:
+        continue
+    if 'hlt' in line:
+        break
+
 l1=[]
 for i in l:
     if i!='\n' and i.find(':')== -1 and i[0:3]!='var':
@@ -156,6 +162,6 @@ if hlt_count>1: #multiple hlt in txt file (error h)
 if l1[len(l1)-1][0]!='hlt' or hlt_count==0: #hlt is not last instruction (error i)
     print('halt instruction missing or not used as last instruction')
 
-f1.close()
+
 
 
